@@ -3,7 +3,7 @@ import sessao_controle
 from pathlib import Path
 
 def render_home():
-    st.title("Flamboyant - Quadro de Anúncios")
+    st.title("Flamboyant")
 
     # Caminho seguro da imagem
     img_path = Path(__file__).parent.parent / "assets" / "imagens" / "salao.png"
