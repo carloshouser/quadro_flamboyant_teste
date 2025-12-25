@@ -16,30 +16,63 @@
 # pip freeze > requirements.txt
 # pip install -r requirements.txt
 
-
 import streamlit as st
 
+# Controle de sessão e cookies
+import sessao_controle
+
+# Estilo global
+from estilo import aplicar_estilo
+
+# Telas
 from login_usuario import render_login
-from utilitarios import load_eventos
-st.set_page_config(page_title="Quadro de Anúncios", layout="wide")
+from paginas.home import render_home
+# (no futuro: dashboard, cadastro, frequência, etc.)
 
-from ui import styles
+# ===============================
+# Configuração da página
+# ===============================
+st.set_page_config(
+    page_title="Flamboyant - Quadro de Anúncios",
+    layout="wide",
+)
 
-def render_header():
-    """
-    Renderiza o cabeçalho do aplicativo com uma imagem.
-    """
-    st.image("imagens/salao.png", width='content')
+# ===============================
+# Estilo global (UMA vez)
+# ===============================
+aplicar_estilo()
 
+# ===============================
+# Inicialização da sessão
+# ===============================
+sessao_controle.init_sessao()
 
-styles.apply_css()
+# ===============================
+# Login automático por cookie
+# ===============================
+sessao_controle.tentar_login_por_cookie()
 
-render_header()
+# ===============================
+# Roteamento central
+# ===============================
+if not st.session_state["logado"]:
+    # Tela de login
+    render_login()
 
-# Inicializar a sessão
-if "logado" not in st.session_state:
-    st.session_state["logado"] = False
-    st.session_state["pagina"] = "login"
+else:
+    pagina = st.session_state["pagina"]
 
-if render_login():
-    st.header('Sucesso')
+    if pagina == "home":
+        render_home()
+
+    elif pagina == "dashboard":
+        st.header("Dashboard")
+
+    elif pagina == "cadastro":
+        st.header("Cadastro")
+
+    elif pagina == "frequencia":
+        st.header("Frequência")
+
+    else:
+        st.error("Página não encontrada.")
