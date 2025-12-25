@@ -4,13 +4,24 @@ from acessos import quadros
 
 def render_lembretes():
 
-    # 🔙 Botão Voltar    
-    if st.button("⬅ Voltar para a página principal"):
-        st.session_state["pagina"] = "home"
-        st.rerun()
+    # ===============================
+    # 🔙 TOPO FIXO DO STREAMLIT
+    # ===============================
+    with st.container():
+        col1, col2 = st.columns([1, 9])
+        with col1:
+            if st.button("⬅ Voltar"):
+                st.session_state["pagina"] = "home"
+                st.rerun()
+
+    # separação real no layout do Streamlit
+    st.markdown("---")
 
     st.title(quadros["lembretes"]["titulo"])
 
+    # ===============================
+    # 📄 IFRAME ISOLADO
+    # ===============================
     html_path = (
         Path(__file__).parent.parent
         / "assets"
@@ -18,10 +29,10 @@ def render_lembretes():
     )
 
     if html_path.exists():
-        with open(html_path, "r", encoding="utf-8") as f:
-            st.markdown("<div style='height:20px'></div>", unsafe_allow_html=True)
+        # ⚠️ container exclusivo para o iframe
+        with st.container():
             st.components.v1.html(
-                f.read(),
+                html_path.read_text(encoding="utf-8"),
                 height=700,
                 scrolling=True
             )
