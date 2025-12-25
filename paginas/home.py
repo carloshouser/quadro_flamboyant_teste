@@ -19,11 +19,11 @@ def render_home():
     usuario = st.session_state["usuario"]
     if usuarios[usuario]["sexo"] == "M":
         st.write(
-            f"#### Saudações {nome_fantasia(usuarios[usuario], usuario)}, seja bem-vindo!!"
+            f"##### Saudações {nome_fantasia(usuarios[usuario], usuario)}, seja bem-vindo!!"
         )
     else:
         st.write(
-            f"#### Saudações {nome_fantasia(usuarios[usuario], usuario)}, seja bem-vinda!!"
+            f"##### Saudações {nome_fantasia(usuarios[usuario], usuario)}, seja bem-vinda!!"
         )
     
     tab_quadro, tab_eventos = st.tabs(["Quadro", "Eventos"])
