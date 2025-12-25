@@ -1,7 +1,7 @@
 import streamlit as st
 import sessao_controle
 from pathlib import Path
-from usuarios import usuarios, nome_fantasia
+from acessos import usuarios, nome_fantasia, usuario_tem_acesso
 
 def render_home():
     st.title("Flamboyant")    
@@ -31,9 +31,11 @@ def render_home():
         col1, col2, col3 = st.columns(3)
 
         with col1:
-            if st.button("📢 Avisos"):
-                st.session_state["pagina"] = "avisos"
-                st.rerun()
+            # Botão condicional
+            if usuario_tem_acesso(usuario, "lembretes"):
+                if st.button("📢 Anúncios e Lembretes"):
+                    st.session_state["pagina"] = "lembretes"
+                    st.rerun()
 
         with col2:
             if st.button("📊 Frequência"):

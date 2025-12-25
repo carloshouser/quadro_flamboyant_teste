@@ -27,6 +27,7 @@ from estilo import aplicar_estilo
 # Telas
 from login_usuario import render_login
 from paginas.home import render_home
+from paginas.lembretes import render_lembretes
 # (no futuro: dashboard, cadastro, frequência, etc.)
 
 # ===============================
@@ -64,6 +65,9 @@ else:
 
     if pagina == "home":
         render_home()
+
+    elif pagina == 'lembretes':
+        render_lembretes()
 
     elif pagina == "dashboard":
         st.header("Dashboard")

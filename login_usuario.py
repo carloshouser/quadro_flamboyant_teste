@@ -1,5 +1,5 @@
 import streamlit as st
-from usuarios import usuarios
+from acessos import usuarios
 import sessao_controle
 
 
