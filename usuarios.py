@@ -18,3 +18,10 @@ usuarios = {
         "nome": "Elber Soares",
     }
 }
+
+
+def nome_fantasia(dic_usuario, nome):
+    if dic_usuario["sexo"] == "M":
+        return f"irmão {nome}"
+    else:
+        return f"irmã {nome}"

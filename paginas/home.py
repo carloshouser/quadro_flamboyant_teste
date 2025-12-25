@@ -1,9 +1,10 @@
 import streamlit as st
 import sessao_controle
 from pathlib import Path
+from usuarios import usuarios, nome_fantasia
 
 def render_home():
-    st.title("Flamboyant")
+    st.title("Flamboyant")    
 
     # Caminho seguro da imagem
     img_path = Path(__file__).parent.parent / "assets" / "imagens" / "salao.png"
@@ -14,6 +15,20 @@ def render_home():
         st.warning("Imagem salao.png não encontrada.")
 
     st.markdown("---")
+
+    # xxx
+    usuario = st.session_state["usuario"]
+    if usuarios[usuario]["sexo"] == "M":
+        st.write(
+            f"### Saudações {nome_fantasia(usuarios[usuario], usuario)}, seja bem-vindo!!"
+        )
+    else:
+        st.write(
+            f"### Saudações {nome_fantasia(usuarios[usuario], usuario)}, seja bem-vinda!!"
+        )
+    # xxx
+
+
 
     tab_quadro, tab_eventos = st.tabs(["Quadro", "Eventos"])
     with tab_quadro:
