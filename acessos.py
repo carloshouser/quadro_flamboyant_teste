@@ -13,7 +13,7 @@ quadros = {
     },
 
     "relatorio": {
-        "titulo": "Relatório de Campo",
+        "titulo": "Relatório (Basta preencher, printar e enviar)",
         "arquivo": r"htmls/relatorio.html"
     }
     
