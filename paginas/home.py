@@ -46,6 +46,26 @@ def render_home():
                     st.session_state["pagina"] = "relatorio"
                     st.rerun()
 
+            if usuario_tem_acesso(usuario, "ociosidade"):
+                if st.button(label="📢 Painel de Ociosidade", type='secondary', key='ociosidade'):
+                    st.session_state["pagina"] = "ociosidade"
+                    st.rerun()
+
+            if usuario_tem_acesso(usuario, "vida_crista_escalas"):
+                if st.button(label="📢 Vida Cristã - Escalas", type='secondary', key='vida_crista_escalas'):
+                    st.session_state["pagina"] = "vida_crista_escalas"
+                    st.rerun()
+
+            if usuario_tem_acesso(usuario, "painel_frequencia"):
+                if st.button(label="📢 Painel de Frequência", type='secondary', key='painel_frequencia'):
+                    st.session_state["pagina"] = "painel_frequencia"
+                    st.rerun()
+
+            if usuario_tem_acesso(usuario, "designacoes_estudantes"):
+                if st.button(label="📢 Minhas Designações", type='secondary', key='designacoes_estudantes'):
+                    st.session_state["pagina"] = "designacoes_estudantes"
+                    st.rerun()
+
         with col2:
             if st.button("📊 Frequência"):
                 st.session_state["pagina"] = "frequencia"

@@ -30,6 +30,10 @@ from paginas.home import render_home
 from paginas.lembretes import render_lembretes
 from paginas.limpeza import render_limpeza
 from paginas.relatorios import render_relatorio
+from paginas.painel_ociosidade import render_painel_ociosidade
+from paginas.vida_crista_escalas import render_escala
+from paginas.painel_frequencia import render_painel_frequencia
+from paginas.designacoes_estudantes import render_designacoes_estudantes
 # (no futuro: dashboard, cadastro, frequência, etc.)
 
 # ===============================
@@ -76,6 +80,18 @@ else:
 
     elif pagina == 'relatorio':
         render_relatorio() 
+
+    elif pagina == "ociosidade":
+            render_painel_ociosidade()
+
+    elif pagina == "vida_crista_escalas":
+            render_escala()
+
+    elif pagina == "painel_frequencia":
+            render_painel_frequencia()
+    
+    elif pagina == "designacoes_estudantes":
+            render_designacoes_estudantes()
 
     elif pagina == "dashboard":
         st.header("Dashboard")

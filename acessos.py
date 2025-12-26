@@ -15,7 +15,19 @@ quadros = {
     "relatorio": {
         "titulo": "Relatório (Basta preencher, printar e enviar)",
         "arquivo": r"htmls/relatorio.html"
-    }
+    },
+
+    "ociosidadeo": {
+        "titulo": "Painel de Ociosidade",
+        "arquivo": ""
+    },
+
+    "vida_crista_escalas": {
+        "titulo": "Vida Cristã - Escalas",
+        "arquivo": ""
+    },
+
+
     
 }
 
@@ -24,7 +36,14 @@ usuarios = {
         "senha": "ccc",
         "nome": "Carlos",        
         "sexo": "M",
-        'acesso' : ["lembretes", "limpeza", "relatorio"]
+        'acesso' : ["lembretes", 
+                    "limpeza", 
+                    "relatorio", 
+                    "ociosidade", 
+                    "vida_crista_escalas",
+                    "painel_frequencia",
+                    "designacoes_estudantes"
+        ]
     },
     "Jerome": {
         "senha": "jjj",
