@@ -5,7 +5,13 @@ quadros = {
     "lembretes": {
         "titulo": "Anúncios e Lembretes",
         "arquivo": r"htmls/lembrete.html"
-    },    
+    },
+
+    "limpeza": {
+        "titulo": "Limpeza do Salão do Reino",
+        "arquivo": r"pdfs/limpeza.pdf"        
+    },
+    
 }
 
 usuarios = {
@@ -13,7 +19,7 @@ usuarios = {
         "senha": "ccc",
         "nome": "Carlos",        
         "sexo": "M",
-        'acesso' : ["lembretes"]
+        'acesso' : ["lembretes", "limpeza"]
     },
     "Jerome": {
         "senha": "jjj",

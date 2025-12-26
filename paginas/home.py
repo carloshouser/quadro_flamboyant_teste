@@ -33,8 +33,12 @@ def render_home():
         with col1:
             # Botão condicional
             if usuario_tem_acesso(usuario, "lembretes"):
-                if st.button("📢 Anúncios e Lembretes"):
+                if st.button(label="📢 Anúncios e Lembretes", type='primary', key='lembretes'):
                     st.session_state["pagina"] = "lembretes"
+                    st.rerun()
+            if usuario_tem_acesso(usuario, "limpeza"):
+                if st.button(label="📢 Limpeza do Salão do Reino ", type='secondary', key='limpeza'):
+                    st.session_state["pagina"] = "limpeza"
                     st.rerun()
 
         with col2:

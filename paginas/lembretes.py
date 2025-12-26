@@ -8,7 +8,7 @@ def render_lembretes():
     st.markdown("<div style='height:60px'></div>", unsafe_allow_html=True)
 
     # 🔙 Botão Voltar
-    if st.button("⬅ Voltar para a página principal"):
+    if st.button("⬅ Voltar para a página principal", key = 'lembrete_voltar'):
         st.session_state["pagina"] = "home"
         st.rerun()
 
