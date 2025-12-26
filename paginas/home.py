@@ -41,6 +41,11 @@ def render_home():
                     st.session_state["pagina"] = "limpeza"
                     st.rerun()
 
+            if usuario_tem_acesso(usuario, "relatorio"):
+                if st.button(label="📢 Relatório", type='secondary', key='relatorio'):
+                    st.session_state["pagina"] = "relatorio"
+                    st.rerun()
+
         with col2:
             if st.button("📊 Frequência"):
                 st.session_state["pagina"] = "frequencia"

@@ -11,6 +11,11 @@ quadros = {
         "titulo": "Limpeza do Salão do Reino",
         "arquivo": r"pdfs/limpeza.pdf"        
     },
+
+    "relatorio": {
+        "titulo": "Relatório de Campo",
+        "arquivo": r"htmls/relatorio.html"
+    }
     
 }
 
@@ -19,7 +24,7 @@ usuarios = {
         "senha": "ccc",
         "nome": "Carlos",        
         "sexo": "M",
-        'acesso' : ["lembretes", "limpeza"]
+        'acesso' : ["lembretes", "limpeza", "relatorio"]
     },
     "Jerome": {
         "senha": "jjj",

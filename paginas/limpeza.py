@@ -32,4 +32,3 @@ def render_limpeza():
         else:
             st.error("Lista de limpeza não encontrada.")
 
-render_limpeza()
