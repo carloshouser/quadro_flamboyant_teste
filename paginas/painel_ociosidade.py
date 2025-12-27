@@ -159,10 +159,14 @@ categorias_map = {
 }
 
 
-def botao_voltar_inicio():
-    if st.button("⬅️ Voltar ao início", key="ociosidade_btn_voltar"):
+def botao_voltar_inicio():    
+
+    # 🔙 Botão Voltar
+    if st.button("⬅ Voltar para a página principal", key = 'ociosidade_voltar', width='stretch'):
         st.session_state["pagina"] = "home"
         st.rerun()
+
+    st.markdown("---")
 
 
 # =========================
@@ -267,19 +271,22 @@ def render_painel_ociosidade():
 
     st.title("📊 Painel de Ociosidade — Designações")
 
-    # ---- Botão de Ajuda ----
-    if st.button("❓ Ajuda", key="ociosidade_btn_ajuda"):
-        try:
-            with open(r"assets/htmls/help_ociosidade.html", "r", encoding="utf-8") as f:
-                html_code = f.read()
-            st.markdown("## 📘 Ajuda")
-            components.html(html_code, height=800, scrolling=True)
-        except Exception as e:
-            st.error(f"Erro ao carregar help_ociosidade.html: {e}")
+    col1, col2, col3 = st.columns([33, 33, 33])
+    with col1:
+        botao_voltar_inicio()      
 
-    st.write("")  # espaço
-
-    botao_voltar_inicio()
+    with col2:
+        # ---- Botão de Ajuda ----
+        if st.button("❓ Ajuda", key="ociosidade_btn_ajuda", width='stretch'):
+            try:
+                with open(r"assets/htmls/help_ociosidade.html", "r", encoding="utf-8") as f:
+                    html_code = f.read()
+                st.markdown("## 📘 Ajuda")
+                components.html(html_code, height=800, scrolling=True)
+            except Exception as e:
+                st.error(f"Erro ao carregar help_ociosidade.html: {e}")
+    with col3:
+        pass
 
     try:
         df = pd.read_csv(r"assets/csv/analise.csv", sep=";", encoding="latin1")

@@ -34,6 +34,7 @@ from paginas.painel_ociosidade import render_painel_ociosidade
 from paginas.vida_crista_escalas import render_escala
 from paginas.painel_frequencia import render_painel_frequencia
 from paginas.designacoes_estudantes import render_designacoes_estudantes
+from paginas.designacoes_mecanicas import render_designacoes_mecanicas
 # (no futuro: dashboard, cadastro, frequência, etc.)
 
 # ===============================
@@ -93,14 +94,8 @@ else:
     elif pagina == "designacoes_estudantes":
             render_designacoes_estudantes()
 
-    elif pagina == "dashboard":
-        st.header("Dashboard")
-
-    elif pagina == "cadastro":
-        st.header("Cadastro")
-
-    elif pagina == "frequencia":
-        st.header("Frequência")
+    elif pagina == "designacoes_mecanicas":
+            render_designacoes_mecanicas()
 
     else:
         st.error("Página não encontrada.")

@@ -19,6 +19,12 @@ def render_designacoes_estudantes():
     )
 
     st.markdown("## 👨‍🏫 Minhas designações")
+
+    # 🔙 Botão Voltar
+    if st.button("⬅ Voltar para a página principal", key = 'minhas_designacoes_voltar'):
+        st.session_state["pagina"] = "home"
+        st.rerun()    
+
     st.markdown("---")
 
     # Carregar CSV
@@ -62,8 +68,4 @@ def render_designacoes_estudantes():
 
     df_exibe = df_filtrado[["Data", "Tipo", "Estudante", "Ajudante"]]
 
-    st.dataframe(df_exibe, use_container_width=True, hide_index=True)
-
-    if st.button("Voltar", key="btn_designacoes_voltar"):
-        st.session_state["pagina"] = "home"
-        st.rerun()
+    st.dataframe(df_exibe, width='stretch', hide_index=True)

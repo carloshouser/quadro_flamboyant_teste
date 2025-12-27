@@ -8,7 +8,7 @@ def render_relatorio():
     st.markdown("<div style='height:60px'></div>", unsafe_allow_html=True)
 
     # 🔙 Botão Voltar
-    if st.button("⬅ Voltar para a página principal", key = 'relatorio_voltar'):
+    if st.button("⬅ Voltar para a página principal", key = 'relatorio_voltar', width='stretch'):
         st.session_state["pagina"] = "home"
         st.rerun()
 

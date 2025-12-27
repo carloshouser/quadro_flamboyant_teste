@@ -28,7 +28,7 @@ def render_login():
     usuario = st.text_input("Usuário")
     senha = st.text_input("Senha", type="password")
 
-    if st.button("Entrar", use_container_width=True):
+    if st.button("Entrar", width='stretch'):
         if autenticar_usuario(usuario, senha):
             # Atualiza sessão
             st.session_state.update(

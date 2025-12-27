@@ -1,9 +1,18 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+from datetime import date, timedelta
+import calendar
 
 def render_painel_frequencia():
-    st.markdown("## 📊 Frequência de Participações")
+    st.markdown("## 📊 Frequência de Participações")    
+
+    # 🔙 Botão Voltar
+    if st.button("⬅ Voltar para a página principal", key = 'frequencia_voltar', width='stretch'):
+        st.session_state["pagina"] = "home"
+        st.rerun()
+    st.markdown('---')
+
     # caminho_csv = r'C://docarlos//quadro_flamboyant_teste//teste_streamlit//analise.csv'
     caminho_csv = r"assets/csv/analise.csv"
 
@@ -17,18 +26,53 @@ def render_painel_frequencia():
     # Filtro por data inicial
     data_minima = df["Data"].min().date()
     data_maxima = df["Data"].max().date()
+    hoje = date.today()
+    # Primeiro dia do mês corrente
+    primeiro_dia_mes = hoje.replace(day=1)
+    # weekday(): segunda=0, terça=1, ..., domingo=6
+    dias_ate_segunda = (0 - primeiro_dia_mes.weekday()) % 7
+    primeira_segunda = primeiro_dia_mes + timedelta(days=dias_ate_segunda)
+
+    # Garantir que a data default esteja dentro do intervalo dos dados
+    data_default = max(data_minima, min(primeira_segunda, data_maxima))
+
+    # Último dia do mês corrente
+    ultimo_dia_mes = date(
+        hoje.year,
+        hoje.month,
+        calendar.monthrange(hoje.year, hoje.month)[1]
+    )   
+
+
     data_inicial = st.date_input(
         "Mostrar participações a partir de:",
-        value=data_minima,
+        value=data_default,
         min_value=data_minima,
         max_value=data_maxima,
         format="DD/MM/YYYY",
         key="freq_data_inicial",
     )
 
+    # Último dia do mês corrente
+    ultimo_dia_mes = date(
+        hoje.year,
+        hoje.month,
+        calendar.monthrange(hoje.year, hoje.month)[1]
+    )
+
+    # weekday(): segunda = 0, domingo = 6
+    dias_para_voltar = (ultimo_dia_mes.weekday() - 0) % 7
+    ultima_segunda = ultimo_dia_mes - timedelta(days=dias_para_voltar)
+
+    # Garantir que a data esteja dentro do intervalo do dataframe
+    if ultima_segunda > data_maxima:
+        ultima_segunda = data_maxima
+    elif ultima_segunda < data_minima:
+        ultima_segunda = data_minima
+
     data_final = st.date_input(
         "Mostrar participações até:",
-        value=data_maxima,
+        value=ultima_segunda,
         min_value=data_minima,
         max_value=data_maxima,
         format="DD/MM/YYYY",
@@ -98,8 +142,4 @@ def render_painel_frequencia():
         yaxis=dict(categoryorder="category descending"),
     )
 
-    st.plotly_chart(fig, use_container_width=True)
-
-    if st.button("Início", key="btn_frequencia_inicio"):
-        st.session_state["pagina"] = "home"
-        st.rerun()
+    st.plotly_chart(fig, width='stretch')

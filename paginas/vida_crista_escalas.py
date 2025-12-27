@@ -4,7 +4,7 @@ import streamlit.components.v1 as components
 
 
 def botao_voltar_principal():
-    if st.button("⬅️ Voltar ao início"):
+    if st.button("⬅️ Voltar ao início", key='btn_vida_crista_voltar', width='stretch'):
         st.session_state["pagina"] = "home"
         st.rerun()
 

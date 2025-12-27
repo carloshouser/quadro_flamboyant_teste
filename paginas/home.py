@@ -2,6 +2,8 @@ import streamlit as st
 import sessao_controle
 from pathlib import Path
 from acessos import usuarios, nome_fantasia, usuario_tem_acesso
+from utilitarios import load_eventos
+from paginas.eventos import render_eventos
 
 def render_home():
     st.title("Flamboyant")    
@@ -17,6 +19,7 @@ def render_home():
     st.markdown("---")
     
     usuario = st.session_state["usuario"]
+    print(usuario)
     if usuarios[usuario]["sexo"] == "M":
         st.write(
             f"##### Saudações {nome_fantasia(usuarios[usuario], usuario)}, seja bem-vindo!!"
@@ -33,41 +36,46 @@ def render_home():
         with col1:
             # Botão condicional
             if usuario_tem_acesso(usuario, "lembretes"):
-                if st.button(label="📢 Anúncios e Lembretes", type='primary', key='lembretes'):
+                if st.button(label="Anúncios e Lembretes", type='primary', key='lembretes', width='stretch'):
                     st.session_state["pagina"] = "lembretes"
                     st.rerun()
             if usuario_tem_acesso(usuario, "limpeza"):
-                if st.button(label="📢 Limpeza do Salão do Reino ", type='secondary', key='limpeza'):
+                if st.button(label="Limpeza do Salão do Reino ", type='secondary', key='limpeza', width='stretch'):
                     st.session_state["pagina"] = "limpeza"
                     st.rerun()
 
             if usuario_tem_acesso(usuario, "relatorio"):
-                if st.button(label="📢 Relatório", type='secondary', key='relatorio'):
+                if st.button(label="Relatório", type='secondary', key='relatorio', width='stretch'):
                     st.session_state["pagina"] = "relatorio"
                     st.rerun()
 
             if usuario_tem_acesso(usuario, "ociosidade"):
-                if st.button(label="📢 Painel de Ociosidade", type='secondary', key='ociosidade'):
+                if st.button(label="Painel de Ociosidade", type='secondary', key='ociosidade', width='stretch'):
                     st.session_state["pagina"] = "ociosidade"
+                    st.rerun()
+
+            if usuario_tem_acesso(usuario, "designacoes_mecanicas"):
+                if st.button(label="Designações Mecânicas", type='secondary', key='designacoes_mecanicas', width='stretch'):
+                    st.session_state["pagina"] = "designacoes_mecanicas"                    
                     st.rerun()           
 
         with col2:
             if usuario_tem_acesso(usuario, "vida_crista_escalas"):
-                if st.button(label="📢 Vida Cristã - Escalas", type='secondary', key='vida_crista_escalas'):
+                if st.button(label="Vida Cristã - Escalas", type='secondary', key='vida_crista_escalas', width='stretch'):
                     st.session_state["pagina"] = "vida_crista_escalas"
                     st.rerun()
 
             if usuario_tem_acesso(usuario, "painel_frequencia"):
-                if st.button(label="📢 Painel de Frequência", type='secondary', key='painel_frequencia'):
+                if st.button(label="Painel de Frequência", type='secondary', key='painel_frequencia', width='stretch'):
                     st.session_state["pagina"] = "painel_frequencia"
                     st.rerun()
 
             if usuario_tem_acesso(usuario, "designacoes_estudantes"):
-                if st.button(label="📢 Minhas Designações", type='secondary', key='designacoes_estudantes'):
+                if st.button(label="Minhas Designações", type='secondary', key='designacoes_estudantes', width='stretch'):
                     st.session_state["pagina"] = "designacoes_estudantes"
                     st.rerun()            
 
-            if st.button("🚪 Sair"):
+            if st.button("Sair", key='btn_sair', width='stretch'):
                 sessao_controle.reset_sessao()       
             
 
@@ -95,3 +103,5 @@ def render_home():
 
     with tab_eventos:
         st.title('Eventos')
+        events = load_eventos()
+        render_eventos(events)

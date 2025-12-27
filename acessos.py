@@ -17,7 +17,7 @@ quadros = {
         "arquivo": r"htmls/relatorio.html"
     },
 
-    "ociosidadeo": {
+    "ociosidade": {
         "titulo": "Painel de Ociosidade",
         "arquivo": ""
     },
@@ -27,7 +27,10 @@ quadros = {
         "arquivo": ""
     },
 
-
+    "designacoes_mecanicas":{
+        "titulo": "Designações Mecânicas",
+        "arquivo": r"pdfs/designacoes_mecanicas.pdf"
+    }
     
 }
 
@@ -42,7 +45,16 @@ usuarios = {
                     "ociosidade", 
                     "vida_crista_escalas",
                     "painel_frequencia",
-                    "designacoes_estudantes"
+                    "designacoes_estudantes", 
+                    "designacoes_mecanicas"
+        ]
+    },
+    "Silvana Franco": {
+        "senha": "sss",
+        "nome": "Silvana Franco",
+        "sexo": "F",
+        "acesso" : [
+                    "designacoes_estudantes",                    
         ]
     },
     "Jerome": {
@@ -65,6 +77,7 @@ def nome_fantasia(dic_usuario, nome):
     else:
         return f"irmã {nome}"
     
-def usuario_tem_acesso(usuario, acesso):
+def usuario_tem_acesso(usuario, acesso):        
     return acesso in usuarios.get(usuario, {}).get("acesso", [])
+     
     
